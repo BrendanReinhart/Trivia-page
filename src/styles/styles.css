@@ -20,15 +20,40 @@ header h1 {
     font-size: 2.5em;
     margin: 0 auto 0.2em;
 }
+.options-form {
+    color: #dddddd;
+    margin: 5px auto;
+}
 .question-list {
     list-style-type: none;
+    display: inline-flex;
+    flex-wrap: wrap;
 }
 .question-list li {
-    border: 2px solid gold;
-    background: goldenrod;
+    border: 5px solid gold;
+    background: #daa520;
     border-radius: 5px;
     padding: 2px 8px;
     margin: 5px auto;
+}
+.question {
+    width: 45%;
+}
+.question.hard {
+    border-color: red;
+}
+.question.medium {
+    border-color: gold;
+}
+.question.easy {
+    border-color: green;
+}
+.category-identifier {
+    margin: 0 auto 3px;
+    text-align: end;
+}
+.question-text {
+    text-align: center;
 }
 .answer-list {
     list-style-type: upper-latin;
@@ -40,6 +65,8 @@ header h1 {
 .answer-list li {
     margin: 5px 0;
     order: attr(order);
+    background-color: rgba(200, 200, 200, 0.6);
+    border: 2px solid rgba(200, 200, 200, 0.5);
 }
 .incorrect-answer {
     color: red;
