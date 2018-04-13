@@ -52,9 +52,10 @@ function getQuestions(options) {
 // ~~~~~~~~~~ EVENT HANDLERS ~~~~~~~~~~
 
 $('.get-questions').on('click', function() {
+    var numQuestions = $('.question-number').val();
     $('.question-list').html('');
     // Move AJAX call to own functions --> getQuestions()
-    getQuestions({"amount": 4});
+    getQuestions({"amount": numQuestions});
     $('.question-list').fadeIn();
 })
 
