@@ -9,12 +9,22 @@
 <body>
     <header><h1>Welcome to Super Trivia World!</h1></header>
     <form class="options-form">
-        Number of questions: <input type="number" class="question-number" value=10><br>
-        Question Difficulty: <br>
-        <input type="radio" name="question-difficulty" id="any" value="any" checked><label for="any">ANY</label><br>
-        <input type="radio" name="question-difficulty" id="easy" value="easy"><label for="easy">EASY</label><br>
-        <input type="radio" name="question-difficulty" id="medium" value="medium"><label for="medium">MED</label><br>
-        <input type="radio" name="question-difficulty" id="hard" value="hard"><label for="hard">HARD</label><br>
+        <div>
+            Number of questions: <input type="number" class="question-number" value=10><br>
+        </div>
+        <div>
+            Category: <br> 
+            <select name="categories" class="question-category">
+                <option value="all">All</option>
+            </select><br><!--Give default of "all"-->
+        </div>
+        <div>
+            Question Difficulty: <br>
+            <input type="radio" name="question-difficulty" id="any" value="any" checked><label for="any">ANY</label><br>
+            <input type="radio" name="question-difficulty" id="easy" value="easy"><label for="easy">EASY</label><br>
+            <input type="radio" name="question-difficulty" id="medium" value="medium"><label for="medium">MED</label><br>
+            <input type="radio" name="question-difficulty" id="hard" value="hard"><label for="hard">HARD</label><br>
+        </div>
         <div class="question-type-checkboxes">
             Question Types: <br>
             <input type="checkbox" id="multiple" name="question-type" value="multiple" checked><label for="multiple"> Multiple Choice</label><br>

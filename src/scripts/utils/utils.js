@@ -1,17 +1,11 @@
-// jQuery(document).ready(function() {
-    
-//     $('.get-questions').click(function() {
-//         typeSelected = $("input[type=checkbox]:checked").length;
-    
-//         if(!typeSelected) {
-//           alert("You must select at least one question type.");
-//           return false;
-//         }
-    
-//       });
-// });
+$(document).ready(function() {
+    // Populate Form with categories:
+    $.each(categories.trivia_categories, function(index, category) {
+        var categoryOption = $('<option class="questionCategory" value="'+category.id+'">'+category.name+'</option>');
+        categoryOption.appendTo($('.question-category'));
+    });
+});
 
-// TODO: Make this an ajax call, executed in the .then() chain IF category is specified.
 var categories = {"trivia_categories" :
     [
         {"id":9,"name":"General Knowledge"},
@@ -41,33 +35,30 @@ var categories = {"trivia_categories" :
     ]
 };
 
+var Utils = {
 
-    var Utils = {
-        "checkIsValid": function() {
-            typeSelected = $("input[type=checkbox]:checked").length;
-    
-            if(!typeSelected) {
-            alert("You must select at least one question type.");
-            return false;
-            } else {
-                return true;
-            }
-        },
-    
-        "getFormData": function() {
+    "checkIsValid": function() {
+        typeSelected = $("input[type=checkbox]:checked").length;
+        if(!typeSelected) {
+        alert("You must select at least one question type.");
+        return false;
+        } else {
+            return true;
+        }
+    },
+
+    "getFormData": function() {
         var formData = {};
-        
+
         // Number
         var questionNumber = $('.question-number').val();
         formData['amount'] = questionNumber;
-        console.info('selected number of questions: '+questionNumber);
 
         // Difficulty
         var questionDifficulty = $('input[name=question-difficulty]:checked').val();
         if (questionDifficulty != 'any') {
             formData['difficulty'] = questionDifficulty;
         };
-        console.log('selected difficulty: '+questionDifficulty);
 
         // Type
         var questionTypes = [];
@@ -76,10 +67,17 @@ var categories = {"trivia_categories" :
         });
         // Only need ajax parameter if one type specified:
         if(questionTypes.length == 1) {
-           formData['type'] = questionTypes[0];
+        formData['type'] = questionTypes[0];
         };
 
-        console.log('formData: ', formData);
+        // Category
+        var questionCategory = $('.question-category').val();
+        console.log('question category selection: ',questionCategory)
+        if (questionCategory != 'all') {
+            formData['category'] = questionCategory;
+        };
+
+        console.log(formData);
         return formData;
     },
 
@@ -87,14 +85,14 @@ var categories = {"trivia_categories" :
         var params = $.extend({ "amount": 10 }, options);
         return $.ajax('https://opentdb.com/api.php', {
             data: params,
-            success: console.log('ajax call successful'),
+            success: console.log('AJAX call successful!'),
             error: function(request, errorType, errorMessage) {
                 alert('Error: ' + errorType + ' with message: ' + errorMessage);
             }
         })
     },
 
-    "populateQuestions": function(response) { // use an each to loop over returned questions and generate html
+    "populateQuestions": function(response) {
         $.each(response.results, function(index, result) {
             
             // define <li> for each question:
@@ -120,7 +118,8 @@ var categories = {"trivia_categories" :
             }
 
             // Shuffle answer <li>'s for display:
-            answerArray.sort(function() { return 0.5 - Math.random() }); 
+            answerArray.sort(function() { return 0.5 - Math.random() });
+
             for(i=0;i<answerArray.length;i++) {
                 answerArray[i].appendTo(answerList);
             }

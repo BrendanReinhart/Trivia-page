@@ -1,24 +1,29 @@
 // Main logic flow goes here
 
 
-// ~~~~~~~~~~ EVENT HANDLERS ~~~~~~~~~~
+
 
 $('.get-questions').on('click', function() {
     // Disable button temporarily?? $(this).prop("disabled", true);
+    
+    // Check if valid, ie: checks that at least one "type" checkbox is checked.
     var validForm = Utils.checkIsValid();
-    console.log('form valid? ', validForm);
     if(validForm == false) {
         return;
     };
-    $('.question-list').html('');
-    var options = Utils.getFormData();
 
+    //Clear html of previous questions
+    $('.question-list').html('');
+
+    var options = Utils.getFormData();
     Utils.getQuestions(options)
     .then(Utils.populateQuestions)
     .catch(function(error) {
         console.error('Error: '+error);
     });
 })
+
+
 
 /* event handler for the pressing of the answers.
     - make each button pressable in it's entirety;
