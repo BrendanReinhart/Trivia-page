@@ -1,3 +1,16 @@
+// jQuery(document).ready(function() {
+    
+//     $('.get-questions').click(function() {
+//         typeSelected = $("input[type=checkbox]:checked").length;
+    
+//         if(!typeSelected) {
+//           alert("You must select at least one question type.");
+//           return false;
+//         }
+    
+//       });
+// });
+
 // TODO: Make this an ajax call, executed in the .then() chain IF category is specified.
 var categories = {"trivia_categories" :
     [
@@ -30,7 +43,18 @@ var categories = {"trivia_categories" :
 
 
     var Utils = {
-    "getFormData": function() {
+        "checkIsValid": function() {
+            typeSelected = $("input[type=checkbox]:checked").length;
+    
+            if(!typeSelected) {
+            alert("You must select at least one question type.");
+            return false;
+            } else {
+                return true;
+            }
+        },
+    
+        "getFormData": function() {
         var formData = {};
         
         // Number
@@ -46,14 +70,16 @@ var categories = {"trivia_categories" :
         console.log('selected difficulty: '+questionDifficulty);
 
         // Type
-        var questionType = 'multiple';  // explicit for now, TODO: handle boolean responses.
-        formData['type'] = questionType;
-        //if($(<type>).val() != <any>) {
-        //    <var questionType = $(<type>).val()>
-        //    formData.append(questionType);
-        //};
+        var questionTypes = [];
+        $('.question-type-checkboxes input:checked').each(function() {
+            questionTypes.push($(this).attr('value'));
+        });
+        // Only need ajax parameter if one type specified:
+        if(questionTypes.length == 1) {
+           formData['type'] = questionTypes[0];
+        };
 
-        console.log(formData);
+        console.log('formData: ', formData);
         return formData;
     },
 
@@ -65,8 +91,8 @@ var categories = {"trivia_categories" :
             error: function(request, errorType, errorMessage) {
                 alert('Error: ' + errorType + ' with message: ' + errorMessage);
             }
-        }
-    )},
+        })
+    },
 
     "populateQuestions": function(response) { // use an each to loop over returned questions and generate html
         $.each(response.results, function(index, result) {
@@ -85,26 +111,23 @@ var categories = {"trivia_categories" :
 
             // generate <ul> for answers:
             var answerList = $('<ul class="answer-list"></ul>');
-            // randomise answer order:
-            var answerArray = [
-            $('<li class="correct-answer"><b>'+result.correct_answer+'</b></li>'),
-            $('<li class="incorrect-answer"><b>'+result.incorrect_answers[0]+'</b></li>'),
-            // TO DO: handle true/false case:
-            //if(result.type == 'multiple') {
-            //  answerArray.push($('<li class="incorrect-answer"><b>'+result.incorrect_answers[1]+'</b></li>'));
-            //  answerArray.push($('<li class="incorrect-answer"><b>'+result.incorrect_answers[2]+'</b></li>'));
-            //}
-            $('<li class="incorrect-answer"><b>'+result.incorrect_answers[1]+'</b></li>'),
-            $('<li class="incorrect-answer"><b>'+result.incorrect_answers[2]+'</b></li>')
-            ];
+
+            // Populate answer <li>'s with .correct and .incorrect classes:
+            var answerArray = []
+            answerArray.push($('<li class="correct-answer"><b>'+result.correct_answer+'</b></li>'));
+            for(i=0;i<result.incorrect_answers.length;i++) {
+                answerArray.push($('<li class="incorrect-answer"><b>'+result.incorrect_answers[i]+'</b></li>'));
+            }
+
+            // Shuffle answer <li>'s for display:
             answerArray.sort(function() { return 0.5 - Math.random() }); 
             for(i=0;i<answerArray.length;i++) {
                 answerArray[i].appendTo(answerList);
             }
 
-            // append answers list <ul> to the original question <li> item
+            // append .answers-list <ul> to the original question <li> item
             answerList.appendTo(trivQuestion);
-        
+
             // append question <li> item to <ul> .question-list
             trivQuestion.appendTo('.question-list');
         });

@@ -14,9 +14,12 @@
         <input type="radio" name="question-difficulty" id="any" value="any" checked><label for="any">ANY</label><br>
         <input type="radio" name="question-difficulty" id="easy" value="easy"><label for="easy">EASY</label><br>
         <input type="radio" name="question-difficulty" id="medium" value="medium"><label for="medium">MED</label><br>
-        <input type="radio" name="question-difficulty" id="hard" value="hard"><label for="hard">HARD</label>
-        <!-- may need to migrate <button> below into form <submit> to handle radio values? -->
-        <!-- <input type="submit" value="Submit"> -->
+        <input type="radio" name="question-difficulty" id="hard" value="hard"><label for="hard">HARD</label><br>
+        <div class="question-type-checkboxes">
+            Question Types: <br>
+            <input type="checkbox" id="multiple" name="question-type" value="multiple" checked><label for="multiple"> Multiple Choice</label><br>
+            <input type="checkbox" id="truefalse" name="question-type" value="boolean" checked><label for="truefalse">True/False</label><br>
+        </div>
     </form>
     <button class="get-questions">GENERATE QUESTIONS</button>
     <div class='trivia-content'>

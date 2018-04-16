@@ -5,6 +5,11 @@
 
 $('.get-questions').on('click', function() {
     // Disable button temporarily?? $(this).prop("disabled", true);
+    var validForm = Utils.checkIsValid();
+    console.log('form valid? ', validForm);
+    if(validForm == false) {
+        return;
+    };
     $('.question-list').html('');
     var options = Utils.getFormData();
 
