@@ -11,10 +11,10 @@
     <form class="options-form">
         Number of questions: <input type="number" class="question-number" value=10><br>
         Question Difficulty: <br>
-        <input type="radio" name="question-difficulty" value="any"> Any<br>
-        <input type="radio" name="question-difficulty" value="easy"> Easy<br>
-        <input type="radio" name="question-difficulty" value="medium"> Medium<br>
-        <input type="radio" name="question-difficulty" value="hard"> Hard
+        <input type="radio" name="question-difficulty" id="any" value="any" checked><label for="any">ANY</label><br>
+        <input type="radio" name="question-difficulty" id="easy" value="easy"><label for="easy">EASY</label><br>
+        <input type="radio" name="question-difficulty" id="medium" value="medium"><label for="medium">MED</label><br>
+        <input type="radio" name="question-difficulty" id="hard" value="hard"><label for="hard">HARD</label>
         <!-- may need to migrate <button> below into form <submit> to handle radio values? -->
         <!-- <input type="submit" value="Submit"> -->
     </form>

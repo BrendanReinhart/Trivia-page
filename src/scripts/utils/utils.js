@@ -36,17 +36,17 @@ var categories = {"trivia_categories" :
         // Number
         var questionNumber = $('.question-number').val();
         formData['amount'] = questionNumber;
+        console.info('selected number of questions: '+questionNumber);
 
         // Difficulty
-        // console.log('selected difficulty: '+$('.question-difficulty').val());
-        // var questionDifficulty = $('input[name=question-difficulty]:checked');
-        // console.log('checked radio: '+questionDifficulty);
-        // if ($('.question-difficulty').val() != 'any') {
-        //     formData['difficulty'] = questionDifficulty;
-        // };
+        var questionDifficulty = $('input[name=question-difficulty]:checked').val();
+        if (questionDifficulty != 'any') {
+            formData['difficulty'] = questionDifficulty;
+        };
+        console.log('selected difficulty: '+questionDifficulty);
 
         // Type
-        var questionType = "multiple";  // explicit for now, TODO: handle boolean responses.
+        var questionType = 'multiple';  // explicit for now, TODO: handle boolean responses.
         formData['type'] = questionType;
         //if($(<type>).val() != <any>) {
         //    <var questionType = $(<type>).val()>

@@ -4,18 +4,16 @@
 // ~~~~~~~~~~ EVENT HANDLERS ~~~~~~~~~~
 
 $('.get-questions').on('click', function() {
+    // Disable button temporarily?? $(this).prop("disabled", true);
     $('.question-list').html('');
     var options = Utils.getFormData();
 
     Utils.getQuestions(options)
     .then(Utils.populateQuestions)
-    .catch(function() {
-        console.log('error: '+error);
+    .catch(function(error) {
+        console.error('Error: '+error);
     });
 })
-
-
-
 
 /* event handler for the pressing of the answers.
     - make each button pressable in it's entirety;
