@@ -9,9 +9,11 @@ html {
 header {
     display: flex;
     height: 80px;
-    margin: 0 0;
+    width: 95%;
+    margin: 0 auto;
     border-radius: 10px;
-    justify-content: center;
+    justify-content: flex-start;
+    position: relative;
     align-items: center;
     background-color: #1ac0b8;
 }
@@ -19,19 +21,51 @@ header h1 {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 2.5em;
     margin: 0 auto 0.2em;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+button {
+    cursor: pointer;
 }
 .options-form {
-    color: #dddddd;
+    width: 85%;
+    border-radius: 7px;
+    color: #333;
+    background-color: #dddddd;
     margin: 5px auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.questionCategory:nth-child(even) {
+    background: #DDD;
+}
+.wrapper-counter {
+    margin: 5px 0 3px;
+    margin-left: auto;
+    vertical-align: middle;
+}
+#counter {
+    padding: 15% 15%;
+    text-align: center;
+    width: 5em;
+    height: auto;
+    background-color: antiquewhite;
+    border: 1px solid lightsteelblue;
+    border-radius: 50%;
+    display: inline-block;
+    vertical-align: middle;
 }
 .question-list {
+    width: 95%;
     list-style-type: none;
     display: inline-flex;
     flex-wrap: wrap;
 }
 .question-list li {
-    border: 5px solid gold;
-    background: #daa520;
+    border: 3px solid;
+    background: #ebebeb;
     border-radius: 5px;
     padding: 2px 8px;
     margin: 5px auto;
@@ -48,38 +82,118 @@ header h1 {
 .question.easy {
     border-color: green;
 }
+/* .difficulty-card {
+    width: 5%;
+    display: inline-block;
+    background-color: red;
+    height: inherit;
+} */
+.question-body {
+    width: 95%;
+    display: inline-block;
+}
 .category-identifier {
     margin: 0 auto 3px;
     text-align: end;
+    font-size: 0.75em;
 }
 .question-text {
     text-align: center;
+    margin: 0 auto;
+    font-size: 0.8em;
 }
 .answer-list {
     list-style-type: upper-latin;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
-    justify-content: flex-start;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 .answer-list li {
     margin: 5px 0;
-    order: attr(order);
-    background-color: rgba(200, 200, 200, 0.6);
-    border: 2px solid rgba(200, 200, 200, 0.5);
+    width: 40%;
+    background-color: #f0db7d;
+    border: 2px solid #838383;
 }
-.incorrect-answer {
-    color: red;
+.answer {
+    font-size: 0.75em;
+    margin: 5px 45px;
 }
-.correct-answer {
+.answer.clickable {
+    cursor: pointer;
+}
+.answer:hover {
+    background-color: #ffffff;
+    border-color: #dbbd35;
+}
+.answer.answer-selected {
+    border-color: cornflowerblue;
+    background-color: #fff;
+}
+.answer.proven-correct {
+    background-color: rgb(212, 255, 168);
     color: rgb(45, 123, 240);
 }
-button {
+.answer.proven-incorrect {
+    background-color: rgb(255, 184, 184);
+    color: red;
+}
+#correct-answer {
+    color: black;
+}
+#correct-answer.answer-selected {
+    color: black;
+    color: rgb(45, 123, 240);
+}
+.tick-mark {
+    float: right;
+    color: rgb(49, 204, 49);
+}
+.cross-mark {
+    float: right;
+    color: rgb(214, 28, 28);
+}
+.answer.unselected-answer {
+    background-color: rgb(255, 255, 255);
+    border-color: grey;
+    color: rgb(134, 134, 134);
+}
+.top-button-wrapper {
+    display: flex;
+    justify-content: center;
+}
+button.get-questions {
     background-color: forestgreen;
+    font-size: 1.5em;   
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border-radius: 0.2em;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 auto;
+    /* cursor: pointer; */
+}
+.bottom-button-wrapper {
+    display: flex;
+    justify-content: center;
+}
+button.check-answers {
+    background-color: cornflowerblue;
+    font-size: 1.5em;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     border-radius: 0.3em;
     border: none;
     padding: 10px 20px;
-    margin: 1em auto;
+    /* cursor: pointer; */
+}
+button.more-questions {
+    background-color: forestgreen;
+    font-size: 1.5em;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border-radius: 0.3em;
+    border: none;
+    padding: 10px 20px;
+    /* cursor: pointer; */
 }
 .hidden{
     display: none;

@@ -7,7 +7,11 @@
     <!-- endcss -->
 </head>
 <body>
-    <header><h1>Welcome to Super Trivia World!</h1></header>
+    <header>
+        <h1>Welcome to Super Trivia World!</h1>
+        <div class="wrapper-counter">
+        </div>
+    </header>
     <form class="options-form">
         <div>
             Number of questions: <input type="number" class="question-number" value=10><br>
@@ -15,15 +19,15 @@
         <div>
             Category: <br> 
             <select name="categories" class="question-category">
-                <option value="all">All</option>
+                <option class="questionCategory" value="all">All</option>
             </select><br><!--Give default of "all"-->
         </div>
         <div>
             Question Difficulty: <br>
-            <input type="radio" name="question-difficulty" id="any" value="any" checked><label for="any">ANY</label><br>
-            <input type="radio" name="question-difficulty" id="easy" value="easy"><label for="easy">EASY</label><br>
-            <input type="radio" name="question-difficulty" id="medium" value="medium"><label for="medium">MED</label><br>
-            <input type="radio" name="question-difficulty" id="hard" value="hard"><label for="hard">HARD</label><br>
+            <input type="radio" name="question-difficulty" id="any" value="any" checked><label for="any">Any</label><br>
+            <input type="radio" name="question-difficulty" id="easy" value="easy"><label for="easy">Easy</label><br>
+            <input type="radio" name="question-difficulty" id="medium" value="medium"><label for="medium">Medium</label><br>
+            <input type="radio" name="question-difficulty" id="hard" value="hard"><label for="hard">Hard</label><br>
         </div>
         <div class="question-type-checkboxes">
             Question Types: <br>
@@ -31,11 +35,14 @@
             <input type="checkbox" id="truefalse" name="question-type" value="boolean" checked><label for="truefalse">True/False</label><br>
         </div>
     </form>
-    <button class="get-questions">GENERATE QUESTIONS</button>
+    <div class="top-button-wrapper">
+        <button class="get-questions">GENERATE QUESTIONS</button>
+    </div>
     <div class='trivia-content'>
         <ul class="question-list">
-
         </ul>
+    </div>
+    <div class='bottom-button-wrapper'>
     </div>
 
 <!-- import external libraries here --> 
